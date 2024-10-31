@@ -11,7 +11,12 @@
     <!-- Musik otomatis di seluruh slide -->
     <audio autoplay loop hidden>
         <source src="semenjak.mp3" type="mp3">
-        Your browser does not support the audio element.
+    <script>
+    window.addEventListener("load", function() {
+        var audio = document.getElementById("background-audio");
+        audio.muted = false; // 
+    });
+    </script>
     </audio>
 
     <div class="slider">
