@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Invitation Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h1>🎉 Welcome to the Birthday Party! 🎂</h1>
+            <p>Enter the 6-digit code to join the fun!</p>
+            <input type="password" id="password" maxlength="6" placeholder="Enter 6-digit password">
+            <button onclick="checkPassword()">Submit</button>
+            <div id="error-message"></div>
+        </div>
+    </div>
+
+  <script>
+    function checkPassword() {
+        const password = document.getElementById('password').value;
+        const correctPassword = "240723";  // Ganti dengan password yang Anda inginkan
+        const errorMessage = document.getElementById('error-message');
+
+        if (password === correctPassword) {
+            window.location.href = "invitation.html";  // Pastikan file "invitation.html" sudah ada
+        } else {
+            errorMessage.textContent = "Oops! The code is incorrect. Try again!";
+            errorMessage.style.color = "red";
+        }
+    }
+    </script>
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Invitation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Musik otomatis di seluruh slide -->
+    <audio autoplay loop hidden>
+        <source src="semenjak.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="slider">
+        <div class="slides">
+            <!-- Slide 1: Foto dan Ucapan -->
+            <div class="slide" id="slide1">
+
+                <div class="balloon-container">
+                    <div class="balloon" style="background-color: #ff6961;"></div>
+                    <div class="balloon" style="background-color: #77dd77;"></div>
+                    <div class="balloon" style="background-color: #fdfd96;"></div>
+                    <div class="balloon" style="background-color: #84b6f4;"></div>
+                    <div class="balloon" style="background-color: #ffb347;"></div>
+                </div>
+
+                <canvas id="fireworksCanvas"></canvas>
+
+                <img src="euis 1.JPG" alt="Us Together" class="photo">
+                <div class="text-box">
+                    <h1>Happy Birthday, Love!</h1>
+                    <p>Here’s to another year of making memories together.</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Kenangan -->
+            <div class="slide" id="slide2">
+                <img src="euis 2.JPG" alt="Memories" class="photo">
+                <div class="text-box">
+                    <h2>Memories We Cherish</h2>
+                    <p>All the moments we’ve shared mean the world to me. Thank you for being you.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3: Invitation -->
+            <div class="slide" id="slide3">
+                <img src="euis 3.HEIC" alt="Invitation" class="photo">
+                <div class="text-box">
+                    <h2>You Are Invited</h2>
+                    <p>Join me in celebrating your special day!</p>
+                    <p><strong>Date:</strong> 1 November 2024</p>
+                    <p><strong>Location:</strong> Medja Resto </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Kembang api menggunakan Canvas API
+        window.addEventListener('load', function() {
+            var canvas = document.getElementById('fireworksCanvas');
+            var ctx = canvas.getContext('3d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+    
+            var fireworks = [];
+    
+            function random(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+    
+            function createFirework() {
+                return {
+                    x: random(0, canvas.width),
+                    y: canvas.height,
+                    speedX: random(-1.5, 1.5),
+                    speedY: random(-10, -6),
+                    radius: random(3, 5),
+                    alpha: 1,
+                    color: 'hsl(' + random(0, 360) + ', 100%, 50%)'
+                };
+            }
+    
+            function updateFireworks() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                fireworks = fireworks.filter(firework => firework.alpha > 0);
+    
+                fireworks.forEach(firework => {
+                    firework.x += firework.speedX;
+                    firework.y += firework.speedY;
+                    firework.alpha -= 0.02;
+    
+                    ctx.beginPath();
+                    ctx.arc(firework.x, firework.y, firework.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = firework.color;
+                    ctx.globalAlpha = firework.alpha;
+                    ctx.fill();
+                });
+    
+                if (Math.random() < 0.1) {
+                    fireworks.push(createFirework());
+                }
+    
+                fireworks(updateFireworks);
+            }
+    
+            fireworks();
+        });
+    </script>    
+
+    <!-- Navigation buttons -->
+    <div class="nav-buttons">
+        <a href="#slide1">Slide 1</a>
+        <a href="#slide2">Slide 2</a>
+        <a href="#slide3">Slide 3</a>
+    </div>
+
+</body>
+</html>
